@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,10 +14,12 @@ public class GameManager : MonoBehaviour
     public AudioSource pont;
     public float Jogador1;
     public float Jogador2;
+    public GameObject TelaPause;
+
     // Start is called before the first frame update
     void Start()
     {
-        GameOver();
+        TelaPause.SetActive(false);
     }
 
     // Update is called once per frame
@@ -24,13 +27,23 @@ public class GameManager : MonoBehaviour
     {
         tempo.text = temporizador.ToString();
         temporizador = 60 - (int)Time.time;
+        GameOver();
+        //TelaPauseCondicao();
     }
-    public void isGameOver() { }
+   
     public void GameOver()
     {
         if (temporizador <= 0) 
         {
+
             isGameOver = true;
+            TelaPause.SetActive(false);
+            Time.timeScale = 0;
+            
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PausarJogo();
         }
     }
     public void pontuacaoJg1()
@@ -46,6 +59,22 @@ public class GameManager : MonoBehaviour
     public void pontuacaoAtu()
     {
         pontuacao.text = Jogador1.ToString() + "x" + Jogador2.ToString();
-        pont.Play();
+        //pont.Play();
+    }
+
+   
+
+    public void PausarJogo()
+    {
+        if(Time.timeScale == 1 )
+        {
+            Time.timeScale = 0;
+            TelaPause.SetActive(true);
+        }
+        else if( Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+            TelaPause.SetActive(false) ;
+        }
     }
 }

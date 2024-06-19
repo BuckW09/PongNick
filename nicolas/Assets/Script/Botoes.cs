@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Botoes : MonoBehaviour
 {
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,10 @@ public class Botoes : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+    public void IrParaInicio()
+    {
+        SceneManager.LoadScene(0);
+    }
 
     public void IrParaCreditos()
     {
@@ -31,5 +36,6 @@ public class Botoes : MonoBehaviour
         Application.Quit();
     }
     
+
 
 }
