@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public float Jogador1;
     public float Jogador2;
     public GameObject TelaPause;
+    public GameObject TelaGameOver;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour
 
             isGameOver = true;
             TelaPause.SetActive(false);
+            TelaGameOver.SetActive(true);
             Time.timeScale = 0;
             
         }
